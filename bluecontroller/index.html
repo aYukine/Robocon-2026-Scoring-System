@@ -13,7 +13,80 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body>
-    <div class="text-2xl">Blue Controller</div>
+  <body class="bg-blue-900 text-white min-h-screen p-4">
+    <div class="container mx-auto max-w-2xl">
+      <h1 class="text-3xl font-bold text-center mb-8 text-blue-300">BLUE TEAM CONTROLLER</h1>
+      
+      <div id="connectionStatus" class="text-center mb-4 text-red-500">Disconnected</div>
+      
+      <!-- Team Info to be added later-->
+      <!-- <div class="bg-blue-800 p-6 rounded-lg mb-6 text-center">
+        <h2 class="text-2xl font-bold mb-2" id="teamName">BLUE TEAM</h2>
+        <div class="grid grid-cols-3 gap-4 text-lg">
+          <div>
+            <div class="text-sm text-blue-300">B1 (30pts)</div>
+            <div id="b1Score" class="text-2xl font-bold">0</div>
+          </div>
+          <div>
+            <div class="text-sm text-blue-300">B2 (40pts)</div>
+            <div id="b2Score" class="text-2xl font-bold">0</div>
+          </div>
+          <div>
+            <div class="text-sm text-blue-300">B3 (80pts)</div>
+            <div id="b3Score" class="text-2xl font-bold">0</div>
+          </div>
+        </div>
+        <div class="mt-4 text-2xl font-bold border-t border-blue-600 pt-4">
+          Total: <span id="totalScore">0</span> points
+        </div>
+      </div>
+       -->
+      <!-- Score Controls -->
+      <div class="bg-blue-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-blue-300">Score Control</h2>
+        
+        <!-- B1 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">B1 Score (30 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('b1', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="b1Input" class="w-20 p-2 bg-blue-700 border border-blue-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('b1')" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('b1', 1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- B2 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">B2 Score (40 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('b2', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="b2Input" class="w-20 p-2 bg-blue-700 border border-blue-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('b2')" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('b2', 1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- B3 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">B3 Score (80 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('b3', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="b3Input" class="w-20 p-2 bg-blue-700 border border-blue-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('b3')" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('b3', 1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- Reset Button -->
+        <button onclick="resetScores()" class="w-full bg-gray-600 hover:bg-gray-700 px-4 py-3 rounded font-bold mt-4">Reset Blue Scores</button>
+      </div>
+    </div>
   </body>
 </html>

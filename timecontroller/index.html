@@ -13,7 +13,53 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body>
-    <div class="text-2xl">Time Controller</div>
+  <body class="bg-gray-900 text-white min-h-screen p-4">
+    <div class="container mx-auto max-w-4xl">
+      <h1 class="text-3xl font-bold text-center mb-8 text-yellow-400">TIME CONTROLLER</h1>
+      
+      <div id="connectionStatus" class="text-center mb-4 text-red-500">Disconnected</div>
+      
+      <!-- Team Setup -->
+      <div class="bg-gray-800 p-6 rounded-lg mb-6">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Team Setup</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium mb-2">Red Team Name</label>
+            <input type="text" id="redTeamName" class="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white" placeholder="Enter red team name">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Blue Team Name</label>
+            <input type="text" id="blueTeamName" class="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white" placeholder="Enter blue team name">
+          </div>
+        </div>
+        <button onclick="setTeams()" class="mt-4 bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold">Set Teams</button>
+      </div>
+      
+      <!-- Game Control -->
+      <div class="bg-gray-800 p-6 rounded-lg mb-6">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Game Control</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <button onclick="prepare()" class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded font-bold">Prepare (60s)</button>
+          <button onclick="startGame()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-bold">Run clock</button>
+          <button onclick="pauseGame()" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded font-bold">Pause</button>
+          <button onclick="resetAll()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold">Reset All</button>
+        </div>
+      </div>
+      
+      <!-- Time Management -->
+      <div class="bg-gray-800 p-6 rounded-lg mb-6">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Time Management</h2>
+        <div class="flex items-center gap-4">
+          <label class="font-medium">Add Time (seconds):</label>
+          <input type="number" id="addTimeInput" class="w-24 p-2 bg-gray-700 border border-gray-600 rounded text-white" value="30">
+          <button onclick="addTime()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded font-bold">Add Time</button>
+        </div>
+        <div class="flex items-center gap-4">
+          <label class="font-medium">Subtract Time (seconds):</label>
+          <input type="number" id="subTimeInput" class="w-24 p-2 bg-gray-700 border border-gray-600 rounded text-white" value="30">
+          <button onclick="subTime()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded font-bold">sub Time</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -19,15 +19,12 @@ timer_running = False
 start_time = time.monotonic()
 
 game_time = 180
-shot_clock_time = 20
 
 log = ""
 
 data = {
     "red_team_name": "",
     "blue_team_name": "",
-    "red_team_side": "",
-    "blue_team_side": "",
     "game_clock": game_time,
     "overlay_timer": 0,
     "overlay_message": "",
@@ -50,7 +47,7 @@ def update_connections():
 
 
 async def handle_controller(websocket):
-    global controller_connections, data, start_time, timer_running, log, game_round
+    global controller_connections, data, start_time, timer_running, log
     controller_connections.append(websocket)
     update_connections()
 
@@ -59,19 +56,11 @@ async def handle_controller(websocket):
 
             rev_data = json.loads(message)
             print(f"Controller received: {message}")
-            
-            clock = data["game_clock"]
-            command = data["command"]
+            command = rev_data["command"]
             
             if command == "setTeams":
                 data['red_team_name'] = rev_data["redTeamName"]
                 data['blue_team_name'] = rev_data["blueTeamName"]
-                data['red_team_side'] = rev_data["redTeamSide"]
-                data['blue_team_side'] = rev_data["blueTeamSide"]
-
-            elif command == "setSides":
-                data['red_team_side'] = rev_data["redTeamSide"]
-                data['blue_team_side'] = rev_data["blueTeamSide"]
 
             elif command == "score":
                 side = rev_data['side']
@@ -96,14 +85,14 @@ async def handle_controller(websocket):
             elif command == "pause":
                 if timer_running:
                     timer_running = False
-                else:
-                    start_time = time.monotonic()
-                    data["overlay_timer"] = 10
-                    timer_running = False
 
             elif command == "addTime":
                 add_time = rev_data['time']
                 data["game_clock"] += add_time
+            
+            elif command == "subTime":
+                sub_time = rev_data["time"]
+                data["game_clock"] -= sub_time
 
             data_json = json.dumps(data)
             await broadcast_to_displays(data_json)
@@ -171,19 +160,15 @@ def reset():
     data = {
         "red_team_name": "",
         "blue_team_name": "",
-        "red_team_side": "",
-        "blue_team_side": "",
         "game_clock": game_time,
         "overlay_timer": 0,
         "overlay_message": "",
         "r1": 0,
         "r2": 0,
         "r3": 0,
-        "r7": 0,
         "b1": 0,
         "b2": 0,
-        "b3": 0,
-        "b7": 0
+        "b3": 0
     }
     log = ""
     asyncio.run_coroutine_threadsafe(
@@ -209,18 +194,18 @@ def log_game(log):
 
 
 def timer():
-    global timer_running, start_time, game_time, shot_clock_time, data, log, game_round
+    global timer_running, start_time, game_time, data, log
     while True:
         if timer_running:
             elapsed_time = time.monotonic() - start_time
-            clock = data["game_clock"]
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0:
                     timer_running = False
 
             else:
-                if clock <= 0:
+                data["game_clock"] -= elapsed_time
+                if data["game_clock"] <= 0:
                     total_red = 30* data["r1"] + 40 * data["r2"] + 80 * data["r3"]
                     total_blue = 30 * data["b1"] + 40 * data["b2"] + 80 * data["b3"]
                     if total_red > total_blue:
@@ -235,9 +220,6 @@ def timer():
                     # log += f"Blue Team: {data['blue_team_name']} - Score: {total_blue}\n"
                     timer_running = False
                     log_game()
-
-                else:
-                    data["shot_clock"] -= elapsed_time
 
             start_time = time.monotonic()
             updateFileJson()

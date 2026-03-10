@@ -13,7 +13,80 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body>
-    <div class="text-2xl">Red Controller</div>
+  <body class="bg-red-900 text-white min-h-screen p-4">
+    <div class="container mx-auto max-w-2xl">
+      <h1 class="text-3xl font-bold text-center mb-8 text-red-300">RED TEAM CONTROLLER</h1>
+      
+      <div id="connectionStatus" class="text-center mb-4 text-red-500">Disconnected</div>
+      
+      <!-- Team Info to be added later-->
+      <!-- <div class="bg-red-800 p-6 rounded-lg mb-6 text-center">
+        <h2 class="text-2xl font-bold mb-2" id="teamName">RED TEAM</h2>
+        <div class="grid grid-cols-3 gap-4 text-lg">
+          <div>
+            <div class="text-sm text-red-300">R1 (30pts)</div>
+            <div id="r1Score" class="text-2xl font-bold">0</div>
+          </div>
+          <div>
+            <div class="text-sm text-red-300">R2 (40pts)</div>
+            <div id="r2Score" class="text-2xl font-bold">0</div>
+          </div>
+          <div>
+            <div class="text-sm text-red-300">R3 (80pts)</div>
+            <div id="r3Score" class="text-2xl font-bold">0</div>
+          </div>
+        </div>
+        <div class="mt-4 text-2xl font-bold border-t border-red-600 pt-4">
+          Total: <span id="totalScore">0</span> points
+        </div>
+      </div>
+       -->
+      <!-- Score Controls -->
+      <div class="bg-red-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-red-300">Score Control</h2>
+        
+        <!-- R1 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">R1 Score (30 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('r1', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r1Input" class="w-20 p-2 bg-red-700 border border-red-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('r1')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('r1', 1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- R2 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">R2 Score (40 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('r2', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r2Input" class="w-20 p-2 bg-red-700 border border-red-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('r2')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('r2', 1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- R3 Controls -->
+        <div class="mb-6">
+          <h3 class="text-lg font-bold mb-2 text-center">R3 Score (80 points each)</h3>
+          <div class="flex items-center justify-center gap-4">
+            <button onclick="updateScore('r3', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r3Input" class="w-20 p-2 bg-red-700 border border-red-600 rounded text-white text-center" value="0" min="0">
+              <button onclick="setScore('r3')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded font-bold">Set</button>
+            </div>
+            <button onclick="updateScore('r3', 1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+          </div>
+        </div>
+        
+        <!-- Reset Button -->
+        <button onclick="resetScores()" class="w-full bg-gray-600 hover:bg-gray-700 px-4 py-3 rounded font-bold mt-4">Reset Red Scores</button>
+      </div>
+    </div>
   </body>
 </html>

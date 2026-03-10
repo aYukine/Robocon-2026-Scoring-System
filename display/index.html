@@ -8,7 +8,73 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body>
-    <div class="text-2xl">Display Page</div>
+  <body class="bg-black text-white min-h-screen p-4">
+    <div class="container mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-yellow-400 mb-2">ROBOCON 2026 SCORING SYSTEM</h1>
+        <div id="connectionStatus" class="text-red-500">Disconnected</div>
+      </div>
+
+      <!-- Game Clock and Overlay -->
+      <div class="text-center mb-8">
+        <div id="gameClockContainer">
+          <div class="text-6xl font-mono font-bold text-white mb-2" id="gameClock">03:00</div>
+        </div>
+        <div id="overlayTimer" class="text-4xl font-bold text-yellow-400 hidden"></div>
+        <div id="overlayMessage" class="text-2xl text-green-400"></div>
+      </div>
+
+      <!-- Teams and Scores -->
+      <div class="grid grid-cols-3 gap-8 items-center">
+        <!-- Red Team -->
+        <div class="bg-red-600 p-6 rounded-lg text-center">
+          <h2 class="text-3xl font-bold mb-4" id="redTeamName">RED TEAM</h2>
+          <div class="grid grid-cols-3 gap-4 text-xl font-mono">
+            <div>
+              <div class="text-sm">R1</div>
+              <div id="r1Score" class="text-2xl font-bold">0</div>
+            </div>
+            <div>
+              <div class="text-sm">R2</div>
+              <div id="r2Score" class="text-2xl font-bold">0</div>
+            </div>
+            <div>
+              <div class="text-sm">R3</div>
+              <div id="r3Score" class="text-2xl font-bold">0</div>
+            </div>
+          </div>
+          <div class="mt-4 text-3xl font-bold" id="redTotal">Total: 0</div>
+        </div>
+
+        <!-- VS -->
+        <div class="text-6xl font-bold text-yellow-400 text-center">VS</div>
+
+        <!-- Blue Team -->
+        <div class="bg-blue-600 p-6 rounded-lg text-center">
+          <h2 class="text-3xl font-bold mb-4" id="blueTeamName">BLUE TEAM</h2>
+          <div class="grid grid-cols-3 gap-4 text-xl font-mono">
+            <div>
+              <div class="text-sm">B1</div>
+              <div id="b1Score" class="text-2xl font-bold">0</div>
+            </div>
+            <div>
+              <div class="text-sm">B2</div>
+              <div id="b2Score" class="text-2xl font-bold">0</div>
+            </div>
+            <div>
+              <div class="text-sm">B3</div>
+              <div id="b3Score" class="text-2xl font-bold">0</div>
+            </div>
+          </div>
+          <div class="mt-4 text-3xl font-bold" id="blueTotal">Total: 0</div>
+        </div>
+      </div>
+
+      <!-- Winner Display -->
+      <div id="winnerDisplay" class="text-center mt-8 hidden">
+        <div class="text-6xl font-bold text-gold-400 animate-pulse" id="winnerText"></div>
+      </div>
+    </div>
   </body>
 </html>
