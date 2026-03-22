@@ -5,75 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/public/Favicon/favicon.ico" />
     <title>Display</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body class="bg-black text-white min-h-screen p-4">
-    <div class="container mx-auto">
-      <!-- Header -->
-      <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-yellow-400 mb-2">ROBOCON 2026 SCORING SYSTEM</h1>
-        <div id="connectionStatus" class="text-red-500">Disconnected</div>
-      </div>
+  <body class="h-screen">
+    <div class="text-center">
+      <div id="connectionStatus" class="text-red-500">Disconnected</div>
+    </div>
+    <div
+      class="w-full h-80 grid grid-cols-[1fr_670px_1fr] overflow-hidden half-red-half-blue"
+    >
+      <!-- 🔴 RED SIDE -->
+      <div class="flex items-center justify-end">
+        <div class="grid grid-cols-[200px_320px_140px] items-center gap-6">
+          <!-- LOGO -->
+          <div class="w-[200px] h-[200px] flex items-center justify-center">
+            <img
+              src="../public/logo/Logo1.png"
+              class="w-full h-full object-contain"
+            />
+          </div>
 
-      <!-- Game Clock and Overlay -->
-      <div class="text-center mb-8">
-        <div id="gameClockContainer">
-          <div class="text-6xl font-mono font-bold text-white mb-2" id="gameClock">03:00</div>
-        </div>
-        <div id="overlayTimer" class="text-4xl font-bold text-yellow-400 hidden"></div>
-        <div id="overlayMessage" class="text-2xl text-green-400"></div>
-      </div>
+          <!-- TEAM NAME -->
+          <div class="w-[300px]">
+            <h1
+              class="text-white text-6xl font-bold truncate text-left"
+              id="redTeamName"
+            >
+              RED
+            </h1>
+          </div>
 
-      <!-- Teams and Scores -->
-      <div class="grid grid-cols-3 gap-8 items-center">
-        <!-- Red Team -->
-        <div class="bg-red-600 p-6 rounded-lg text-center">
-          <h2 class="text-3xl font-bold mb-4" id="redTeamName">RED TEAM</h2>
-          <div class="grid grid-cols-3 gap-4 text-xl font-mono">
-            <div>
-              <div class="text-sm">R1</div>
-              <div id="r1Score" class="text-2xl font-bold">0</div>
+          <!-- TOTAL -->
+          <div class="flex items-center justify-center flex-col gap-4">
+            <div class="text-6xl text-center text-white font-digital">
+              TOTAL
             </div>
-            <div>
-              <div class="text-sm">R2</div>
-              <div id="r2Score" class="text-2xl font-bold">0</div>
-            </div>
-            <div>
-              <div class="text-sm">R3</div>
-              <div id="r3Score" class="text-2xl font-bold">0</div>
+            <div
+              class="relative bg-[#1A1C1C] outline outline-6 text-white h-[130px] flex items-center justify-center"
+            >
+              <!-- TOTAL SCORE -->
+              <div
+                class="relative text-[8rem] text-white transition-all duration-300 font-digital w-[220px] flex items-center justify-center"
+                id="redTotal"
+              >
+                00
+              </div>
             </div>
           </div>
-          <div class="mt-4 text-3xl font-bold" id="redTotal">Total: 0</div>
-        </div>
-
-        <!-- VS -->
-        <div class="text-6xl font-bold text-yellow-400 text-center">VS</div>
-
-        <!-- Blue Team -->
-        <div class="bg-blue-600 p-6 rounded-lg text-center">
-          <h2 class="text-3xl font-bold mb-4" id="blueTeamName">BLUE TEAM</h2>
-          <div class="grid grid-cols-3 gap-4 text-xl font-mono">
-            <div>
-              <div class="text-sm">B1</div>
-              <div id="b1Score" class="text-2xl font-bold">0</div>
-            </div>
-            <div>
-              <div class="text-sm">B2</div>
-              <div id="b2Score" class="text-2xl font-bold">0</div>
-            </div>
-            <div>
-              <div class="text-sm">B3</div>
-              <div id="b3Score" class="text-2xl font-bold">0</div>
-            </div>
-          </div>
-          <div class="mt-4 text-3xl font-bold" id="blueTotal">Total: 0</div>
         </div>
       </div>
 
-      <!-- Winner Display -->
-      <div id="winnerDisplay" class="text-center mt-8 hidden">
-        <div class="text-6xl font-bold text-gold-400 animate-pulse" id="winnerText"></div>
+      <!-- ⏱️ TIMER (LOCKED CENTER) -->
+      <div class="flex items-center justify-center">
+        <div
+          class="relative rounded-3xl bg-[#1A1C1C] outline outline-6 text-[#F0F1F1] shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-500 h-[200px] w-[430px] flex items-center justify-center"
+        >
+          <!-- TIME TEXT -->
+          <div id="gameClockContainer">
+            <div
+              class="relative text-[11rem] text-[#F0F1F1] font-digital"
+              id="gameClock"
+            >
+              03:00
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🔵 BLUE SIDE -->
+      <div class="flex items-center justify-start">
+        <div class="grid grid-cols-[140px_320px_200px] items-center gap-6">
+          <!-- TOTAL (NEAR TIMER) -->
+          <div class="flex items-center justify-center flex-col gap-4">
+            <div class="text-6xl text-center text-white font-digital">
+              TOTAL
+            </div>
+            <div
+              class="relative bg-[#1A1C1C] outline outline-6 text-white h-[130px] flex items-center justify-center"
+            >
+              <!-- TOTAL SCORE -->
+              <div
+                class="relative text-[8rem] text-white transition-all duration-300 font-digital w-[220px] flex items-center justify-center"
+                id="blueTotal"
+              >
+                00
+              </div>
+            </div>
+          </div>
+
+          <!-- TEAM NAME -->
+          <div class="w-[300px]">
+            <h1
+              class="text-white text-6xl font-bold truncate text-right"
+              id="blueTeamName"
+            >
+              BLUE
+            </h1>
+          </div>
+
+          <!-- LOGO -->
+          <div class="w-[200px] h-[200px] flex items-center justify-center">
+            <img
+              src="../public/logo/Logo1.png"
+              class="w-full h-full object-contain"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </body>

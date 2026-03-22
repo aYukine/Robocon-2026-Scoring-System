@@ -1,0 +1,10 @@
+.half-red-half-blue {
+  background: linear-gradient(to right, #e63946 50%, #1d4ed8 50%);
+}
+
+.font-digital {
+  font-family: "Digital-7";
+  src: url("/fonts/digital-7.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
