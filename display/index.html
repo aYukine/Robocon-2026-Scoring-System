@@ -9,12 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body class="h-screen">
-    <div class="text-center">
+  <body class="h-dvh half-red-half-blue">
+    <div class="text-center bg-white">
       <div id="connectionStatus" class="text-red-500">Disconnected</div>
     </div>
     <div
-      class="w-full h-80 grid grid-cols-[1fr_670px_1fr] overflow-hidden half-red-half-blue"
+      class="w-full h-70 grid grid-cols-[1fr_minmax(500px,670px)_1fr] overflow-hidden border-b-4 border-white"
     >
       <!-- 🔴 RED SIDE -->
       <div class="flex items-center justify-end">
@@ -38,29 +38,14 @@
           </div>
 
           <!-- TOTAL -->
-          <div class="flex items-center justify-center flex-col gap-4">
-            <div class="text-6xl text-center text-white font-digital">
-              TOTAL
-            </div>
-            <div
-              class="relative bg-[#1A1C1C] outline outline-6 text-white h-[130px] flex items-center justify-center"
-            >
-              <!-- TOTAL SCORE -->
-              <div
-                class="relative text-[8rem] text-white transition-all duration-300 font-digital w-[220px] flex items-center justify-center"
-                id="redTotal"
-              >
-                00
-              </div>
-            </div>
-          </div>
+          <div class="flex items-center justify-center flex-col gap-4"></div>
         </div>
       </div>
 
       <!-- ⏱️ TIMER (LOCKED CENTER) -->
       <div class="flex items-center justify-center">
         <div
-          class="relative rounded-3xl bg-[#1A1C1C] outline outline-6 text-[#F0F1F1] shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-500 h-[200px] w-[430px] flex items-center justify-center"
+          class="relative rounded-3xl bg-[#1A1C1C] outline outline-6 text-[#F0F1F1] shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-500 h-[200px] w-[420px] flex items-center justify-center"
         >
           <!-- TIME TEXT -->
           <div id="gameClockContainer">
@@ -78,22 +63,7 @@
       <div class="flex items-center justify-start">
         <div class="grid grid-cols-[140px_320px_200px] items-center gap-6">
           <!-- TOTAL (NEAR TIMER) -->
-          <div class="flex items-center justify-center flex-col gap-4">
-            <div class="text-6xl text-center text-white font-digital">
-              TOTAL
-            </div>
-            <div
-              class="relative bg-[#1A1C1C] outline outline-6 text-white h-[130px] flex items-center justify-center"
-            >
-              <!-- TOTAL SCORE -->
-              <div
-                class="relative text-[8rem] text-white transition-all duration-300 font-digital w-[220px] flex items-center justify-center"
-                id="blueTotal"
-              >
-                00
-              </div>
-            </div>
-          </div>
+          <div class="flex items-center justify-center flex-col gap-4"></div>
 
           <!-- TEAM NAME -->
           <div class="w-[300px]">
@@ -112,6 +82,81 @@
               class="w-full h-full object-contain"
             />
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-[1fr_670px_1fr] overflow-hidden p-10">
+      <!-- 🔴 RED SIDE -->
+      <div class="flex flex-col items-center justify-start pt-10 gap-10">
+        <!-- TOTAL SCORE -->
+        <div class="flex flex-col items-center gap-4">
+          <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
+          <div
+            class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white"
+          ></div>
+        </div>
+
+        <!-- WP SCORE -->
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-white text-2xl font-bold">WP</div>
+          <div
+            class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white"
+          ></div>
+        </div>
+
+        <!-- KFS SCORE -->
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-white text-2xl font-bold">KFS</div>
+          <div
+            class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white"
+          ></div>
+        </div>
+      </div>
+
+      <!-- 🎯 CENTER GRID -->
+      <div
+        class="flex items-center justify-center bg-[#1A1C1C] border-4 border-white"
+      >
+        <div class="grid grid-cols-3 gap-10 p-10">
+          <!-- 9 BOXES -->
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+          <div class="w-[160px] h-[160px] bg-gray-300"></div>
+        </div>
+      </div>
+
+      <!-- 🔵 BLUE SIDE -->
+      <div class="flex flex-col items-center justify-start pt-10 gap-10">
+        <!-- TOTAL SCORE -->
+        <div class="flex flex-col items-center gap-4">
+          <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
+          <div
+            class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white"
+          ></div>
+        </div>
+
+        <!-- WP SCORE -->
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-white text-2xl font-bold">WP</div>
+          <div
+            class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white"
+          ></div>
+        </div>
+
+        <!-- KFS SCORE -->
+        <div class="flex flex-col items-center gap-3">
+          <div class="text-white text-2xl font-bold">KFS</div>
+          <div
+            class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white"
+          ></div>
         </div>
       </div>
     </div>
