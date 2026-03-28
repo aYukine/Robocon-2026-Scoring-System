@@ -18,22 +18,37 @@
       <h1 class="text-3xl font-bold text-center mb-8 text-red-300">RED TEAM CONTROLLER</h1>
       
       <div id="connectionStatus" class="text-center mb-4 text-red-500">Disconnected</div>
+
+      <div class="bg-red-800 p-4 rounded-lg mb-6">
+        <div class="text-center text-red-200 text-sm">Team</div>
+        <div id="redTeamLabel" class="text-center text-2xl font-bold">RED</div>
+        <div class="grid grid-cols-3 gap-3 mt-4 text-center">
+          <div class="bg-red-700 rounded p-3">
+            <div class="text-sm text-red-200">Weapon Assembly</div>
+            <div id="r1Value" class="text-2xl font-bold">0</div>
+          </div>
+          <div class="bg-red-700 rounded p-3">
+            <div class="text-sm text-red-200">KFS Collection</div>
+            <div id="r2Value" class="text-2xl font-bold">0</div>
+          </div>
+          <div class="bg-red-700 rounded p-3">
+            <div class="text-sm text-red-200">Total</div>
+            <div id="redTotalScore" class="text-2xl font-bold">0</div>
+          </div>
+        </div>
+      </div>
       
       <!-- Team Info to be added later-->
       <!-- <div class="bg-red-800 p-6 rounded-lg mb-6 text-center">
         <h2 class="text-2xl font-bold mb-2" id="teamName">RED TEAM</h2>
         <div class="grid grid-cols-3 gap-4 text-lg">
           <div>
-            <div class="text-sm text-red-300">R1 (30pts)</div>
+            <div class="text-sm text-red-300">WPA(10pts)</div>
             <div id="r1Score" class="text-2xl font-bold">0</div>
           </div>
           <div>
-            <div class="text-sm text-red-300">R2 (40pts)</div>
+            <div class="text-sm text-red-300">KFS(10pts)</div>
             <div id="r2Score" class="text-2xl font-bold">0</div>
-          </div>
-          <div>
-            <div class="text-sm text-red-300">R3 (80pts)</div>
-            <div id="r3Score" class="text-2xl font-bold">0</div>
           </div>
         </div>
         <div class="mt-4 text-2xl font-bold border-t border-red-600 pt-4">
@@ -47,7 +62,7 @@
         
         <!-- R1 Controls -->
         <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">R1 Score (30 points each)</h3>
+          <h3 class="text-lg font-bold mb-2 text-center">Weapon assembly</h3>
           <div class="flex items-center justify-center gap-4">
             <button onclick="updateScore('r1', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
             <div class="flex items-center gap-2">
@@ -60,7 +75,7 @@
         
         <!-- R2 Controls -->
         <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">R2 Score (40 points each)</h3>
+          <h3 class="text-lg font-bold mb-2 text-center">KFS Collection</h3>
           <div class="flex items-center justify-center gap-4">
             <button onclick="updateScore('r2', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
             <div class="flex items-center gap-2">
@@ -70,17 +85,19 @@
             <button onclick="updateScore('r2', 1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">+</button>
           </div>
         </div>
-        
-        <!-- R3 Controls -->
-        <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">R3 Score (80 points each)</h3>
-          <div class="flex items-center justify-center gap-4">
-            <button onclick="updateScore('r3', -1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">-</button>
-            <div class="flex items-center gap-2">
-              <input type="number" id="r3Input" class="w-20 p-2 bg-red-700 border border-red-600 rounded text-white text-center" value="0" min="0">
-              <button onclick="setScore('r3')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded font-bold">Set</button>
-            </div>
-            <button onclick="updateScore('r3', 1)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+        <!-- TTT control -->
+        <div class="mt-8">
+          <h3 class="text-lg font-bold mb-3 text-center">Tic-Tac-Toe Control</h3>
+          <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto" id="tttGrid">
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 0)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 1)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 2)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 0)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 1)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 2)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 0)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 1)"></button>
+            <button type="button" class="ttt-cell bg-red-700 hover:bg-red-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 2)"></button>
           </div>
         </div>
         

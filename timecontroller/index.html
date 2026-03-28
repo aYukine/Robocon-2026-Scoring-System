@@ -60,6 +60,16 @@
           <button onclick="subTime()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded font-bold">sub Time</button>
         </div>
       </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Live Status</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="bg-gray-700 rounded p-3">Game Clock: <span id="currentGameClock" class="font-bold">03:00</span></div>
+          <div class="bg-gray-700 rounded p-3">Timer Status: <span id="timerStatus" class="font-bold">Stopped</span></div>
+          <div class="bg-gray-700 rounded p-3">Red Team: <span id="currentRedTeam" class="font-bold">-</span></div>
+          <div class="bg-gray-700 rounded p-3">Blue Team: <span id="currentBlueTeam" class="font-bold">-</span></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

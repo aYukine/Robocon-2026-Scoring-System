@@ -18,6 +18,25 @@
       <h1 class="text-3xl font-bold text-center mb-8 text-blue-300">BLUE TEAM CONTROLLER</h1>
       
       <div id="connectionStatus" class="text-center mb-4 text-red-500">Disconnected</div>
+
+      <div class="bg-blue-800 p-4 rounded-lg mb-6">
+        <div class="text-center text-blue-200 text-sm">Team</div>
+        <div id="blueTeamLabel" class="text-center text-2xl font-bold">BLUE</div>
+        <div class="grid grid-cols-3 gap-3 mt-4 text-center">
+          <div class="bg-blue-700 rounded p-3">
+            <div class="text-sm text-blue-200">Weapon Assembly</div>
+            <div id="b1Value" class="text-2xl font-bold">0</div>
+          </div>
+          <div class="bg-blue-700 rounded p-3">
+            <div class="text-sm text-blue-200">Kongfu Scroll</div>
+            <div id="b2Value" class="text-2xl font-bold">0</div>
+          </div>
+          <div class="bg-blue-700 rounded p-3">
+            <div class="text-sm text-blue-200">Total</div>
+            <div id="blueTotalScore" class="text-2xl font-bold">0</div>
+          </div>
+        </div>
+      </div>
       
       <!-- Team Info to be added later-->
       <!-- <div class="bg-blue-800 p-6 rounded-lg mb-6 text-center">
@@ -31,10 +50,6 @@
             <div class="text-sm text-blue-300">B2 (40pts)</div>
             <div id="b2Score" class="text-2xl font-bold">0</div>
           </div>
-          <div>
-            <div class="text-sm text-blue-300">B3 (80pts)</div>
-            <div id="b3Score" class="text-2xl font-bold">0</div>
-          </div>
         </div>
         <div class="mt-4 text-2xl font-bold border-t border-blue-600 pt-4">
           Total: <span id="totalScore">0</span> points
@@ -47,7 +62,7 @@
         
         <!-- B1 Controls -->
         <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">B1 Score (30 points each)</h3>
+          <h3 class="text-lg font-bold mb-2 text-center">Weapon Assembly</h3>
           <div class="flex items-center justify-center gap-4">
             <button onclick="updateScore('b1', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
             <div class="flex items-center gap-2">
@@ -60,7 +75,7 @@
         
         <!-- B2 Controls -->
         <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">B2 Score (40 points each)</h3>
+          <h3 class="text-lg font-bold mb-2 text-center">Kongfu scroll</h3>
           <div class="flex items-center justify-center gap-4">
             <button onclick="updateScore('b2', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
             <div class="flex items-center gap-2">
@@ -70,17 +85,20 @@
             <button onclick="updateScore('b2', 1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">+</button>
           </div>
         </div>
-        
-        <!-- B3 Controls -->
-        <div class="mb-6">
-          <h3 class="text-lg font-bold mb-2 text-center">B3 Score (80 points each)</h3>
-          <div class="flex items-center justify-center gap-4">
-            <button onclick="updateScore('b3', -1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">-</button>
-            <div class="flex items-center gap-2">
-              <input type="number" id="b3Input" class="w-20 p-2 bg-blue-700 border border-blue-600 rounded text-white text-center" value="0" min="0">
-              <button onclick="setScore('b3')" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded font-bold">Set</button>
-            </div>
-            <button onclick="updateScore('b3', 1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded font-bold text-2xl">+</button>
+      
+        <!-- TTT control -->
+        <div class="mt-8">
+          <h3 class="text-lg font-bold mb-3 text-center">Tic-Tac-Toe Control</h3>
+          <div class="grid grid-cols-3 gap-2 max-w-xs mx-auto" id="tttGrid">
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 0)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 1)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(0, 2)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 0)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 1)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(1, 2)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 0)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 1)"></button>
+            <button type="button" class="ttt-cell bg-blue-700 hover:bg-blue-600 h-20 rounded text-3xl font-bold" onclick="sendTTT(2, 2)"></button>
           </div>
         </div>
         
