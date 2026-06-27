@@ -9,45 +9,37 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
   </head>
-  <body class="h-dvh half-red-half-blue relative overflow-hidden">
+    <body class="h-dvh bg-gradient-to-r from-blue-600 via-blue-600 to-red-600 from-50% to-50% relative overflow-hidden"></body>
     <div id="displayContent" class="h-full transition-all duration-300">
-      <!-- <div class="text-center bg-white">
-        <div id="connectionStatus" class="text-red-500">Disconnected</div>
-      </div> -->
-    <div class="w-full h-70 grid grid-cols-[1fr_minmax(500px,670px)_1fr] overflow-hidden border-b-4 border-white">
-      <!-- 🔴 RED SIDE -->
+      <div class="w-full h-70 grid grid-cols-[1fr_minmax(500px,670px)_1fr] overflow-hidden border-b-4 border-white">
+      
       <div class="flex items-center justify-end">
         <div class="grid grid-cols-[200px_320px_140px] items-center gap-6">
-          <!-- LOGO -->
           <div class="w-[200px] h-[200px] flex items-center justify-center">
             <img
-              id="redTeamLogo"
-              src="../public/logo/RED.png"
+              id="blueTeamLogo"
+              src="../public/logo/Logo.png"
               class="w-full h-full object-contain"
             />
           </div>
 
-          <!-- TEAM NAME -->
           <div class="w-[300px]">
             <h1
               class="text-white text-6xl font-bold truncate text-left"
-              id="redTeamName"
+              id="blueTeamName"
             >
-              RED
+              BLUE
             </h1>
           </div>
 
-          <!-- TOTAL -->
           <div class="flex items-center justify-center flex-col gap-4"></div>
         </div>
       </div>
 
-      <!-- ⏱️ TIMER (LOCKED CENTER) -->
       <div class="flex items-center justify-center">
         <div
           class="relative rounded-3xl bg-[#1A1C1C] outline outline-6 text-[#F0F1F1] shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-500 h-[200px] w-[420px] flex items-center justify-center"
         >
-          <!-- TIME TEXT -->
           <div id="gameClockContainer">
             <div
               class="relative text-[11rem] text-[#F0F1F1] font-digital"
@@ -63,56 +55,49 @@
         </div>
       </div>
 
-      <!-- 🔵 BLUE SIDE -->
       <div class="flex items-center justify-start">
         <div class="grid grid-cols-[140px_320px_200px] items-center gap-6">
-          <!-- TOTAL (NEAR TIMER) -->
           <div class="flex items-center justify-center flex-col gap-4"></div>
 
-          <!-- TEAM NAME -->
           <div class="w-[300px]">
             <h1
               class="text-white text-6xl font-bold truncate text-right"
-              id="blueTeamName"
+              id="redTeamName"
             >
-              BLUE
+              RED
             </h1>
           </div>
 
-          <!-- LOGO -->
           <div class="w-[200px] h-[200px] flex items-center justify-center">
             <img
-              id="blueTeamLogo"
-              src="../public/logo/BLUE.png"
+              id="redTeamLogo"
+              src="../public/logo/Logo.png"
               class="w-full h-full object-contain"
             />
           </div>
         </div>
       </div>
     </div>
+
     <div class="w-full grid grid-cols-[1fr_670px_1fr] overflow-hidden p-10">
-      <!-- 🔴 RED SIDE -->
+      
       <div class="flex flex-col items-center justify-start pt-10 gap-10">
-        <!-- TOTAL SCORE -->
         <div class="flex flex-col items-center gap-4">
           <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
-          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="redTotal">0</div>
+          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="blueTotal">0</div>
         </div>
 
-        <!-- WP SCORE -->
         <div class="flex flex-col items-center gap-3">
           <div class="text-white text-2xl font-bold">WP</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r1Score">0</div>
+          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b1Score">0</div>
         </div>
 
-        <!-- KFS SCORE -->
         <div class="flex flex-col items-center gap-3">
           <div class="text-white text-2xl font-bold">KFS</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r2Score">0</div>
+          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b2Score">0</div>
         </div>
       </div>
 
-      <!-- 🎯 CENTER GRID -->
       <div
         class="flex items-center justify-center bg-[#1A1C1C] border-4 border-white"
       >
@@ -129,24 +114,20 @@
         </div>
       </div>
 
-      <!-- 🔵 BLUE SIDE -->
       <div class="flex flex-col items-center justify-start pt-10 gap-10">
-        <!-- TOTAL SCORE -->
         <div class="flex flex-col items-center gap-4">
           <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
-          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="blueTotal">0</div>
+          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="redTotal">0</div>
         </div>
 
-        <!-- WP SCORE -->
         <div class="flex flex-col items-center gap-3">
           <div class="text-white text-2xl font-bold">WP</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b1Score">0</div>
+          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r1Score">0</div>
         </div>
 
-        <!-- KFS SCORE -->
         <div class="flex flex-col items-center gap-3">
           <div class="text-white text-2xl font-bold">KFS</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b2Score">0</div>
+          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r2Score">0</div>
         </div>
       </div>
     </div>

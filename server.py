@@ -354,9 +354,10 @@ def timer():
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0:
+                    if data["overlay_message"] == "PREPARATION":
+                        timer_running = False
                     data["overlay_timer"] = 0
                     data["overlay_message"] = ""
-                    timer_running = False
                     add_log("Preparation phase ended")
 
             else:

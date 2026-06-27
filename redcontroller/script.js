@@ -23,7 +23,7 @@ function connect() {
         console.log('Red controller disconnected');
         document.getElementById('connectionStatus').textContent = 'Disconnected';
         document.getElementById('connectionStatus').className = 'text-center mb-4 text-red-500';
-        setTimeout(connect, 3000);
+        setTimeout(connect, 2000);
     };
 
     ws.onerror = function(error) {
