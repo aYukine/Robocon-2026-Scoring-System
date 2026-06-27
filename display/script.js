@@ -75,10 +75,10 @@ function updateDisplay() {
   document.getElementById("redTotal").textContent = redTotal;
   document.getElementById("blueTotal").textContent = blueTotal;
 
-  const minutes = Math.floor((gameData.game_clock || 0) / 60);
-  const seconds = Math.floor((gameData.game_clock || 0) % 60);
+  // const minutes = Math.floor((gameData.game_clock || 0) / 60);
+  // const seconds = Math.floor((gameData.game_clock || 0) % 60);
   document.getElementById("gameClock").textContent =
-    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    `${Math.floor(gameData.game_clock)}`
 
   updateModalState();
   updateTTT(ttt);
