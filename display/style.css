@@ -2,55 +2,15 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
   background-image: url("../public/backgrounds/Scoreboad.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   min-height: 100vh;
-}
-
-@media (max-width: 768px) {
-  .team-name-xl {
-    font-size: 1.8rem !important;
-  }
-  .timer-digits-xl {
-    font-size: 2.4rem !important;
-  }
-  .stat-value-text {
-    font-size: 2rem !important;
-  }
-  .ttt-cell {
-    width: 70px !important;
-    height: 70px !important;
-    font-size: 1.8rem !important;
-  }
-}
-@media (max-width: 640px) {
-  .team-logo-img {
-    width: 55px !important;
-    height: 55px !important;
-  }
-  .team-name-xl {
-    font-size: 1.4rem !important;
-  }
-  .timer-box {
-    padding: 0.75rem 1rem !important;
-    min-width: 200px !important;
-  }
-}
-
-.font-digital {
-  font-family: "Digital-7";
-  src: url("/fonts/digital-7.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  touch-action: manipulation;
 }
 
 .font-montserrat {
