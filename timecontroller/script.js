@@ -68,6 +68,27 @@ function pauseGame() {
     sendCommand('pause');
 }
 
+function showWinner() {
+    const showButton = document.getElementById('showWinnerButton');
+    const winnerMessage = document.getElementById('winnerMessage').value;
+
+    showButton.textContent = showButton.textContent === 'Show Winner' ? 'Hide Winner' : 'Show Winner';
+    if (showButton.textContent === 'Show Winner') {
+        showButton.classList.remove('bg-red-500');
+        showButton.classList.remove('hover:bg-red-700');
+        showButton.classList.add('bg-green-500');
+        showButton.classList.add('hover:bg-green-600');
+    } else {
+        showButton.classList.remove('bg-green-500');
+        showButton.classList.remove('hover:bg-green-600');
+        showButton.classList.add('bg-red-500');
+        showButton.classList.add('hover:bg-red-700');
+    }
+
+    sendCommand('showWinner', {
+        message: winnerMessage
+    });
+}
 function resetAll() {
     if (confirm('Are you sure you want to reset everything?')) {
         sendCommand('resetAll');

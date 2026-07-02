@@ -108,12 +108,12 @@ function updateModalState() {
   const overlayMessage = (gameData.overlay_message || "").trim();
 
   const isPreparation = gameData.overlay_timer > 0;
-  const isWinner = overlayMessage.startsWith("WINNER:");
+  const showWinner = gameData.show_winner;
 
   if (isPreparation) {
     modal.classList.remove("hidden");
     modal.classList.add("flex");
-    title.textContent = "PREPARATION";
+    title.textContent = gameData.overlay_message;
     subtitle.textContent = `${Math.ceil(gameData.overlay_timer)}s`;
     displayContent.classList.add("blur-sm");
     document.getElementById("overlayMessage").textContent = "";
@@ -123,13 +123,15 @@ function updateModalState() {
     return;
   }
 
-  if (isWinner) {
-    // modal.classList.remove("hidden");
-    // modal.classList.add("flex");
-    // title.textContent = "WINNER";
-    // subtitle.textContent = overlayMessage.replace(/^WINNER:\s*/, "");
-    // displayContent.classList.add("blur-sm");
-    // document.getElementById("overlayMessage").textContent = "";
+  if (showWinner) {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    title.textContent = gameData.overlay_message;
+    displayContent.classList.add("blur-sm");
+    document.getElementById("overlayMessage").textContent = "";
+    modal.style.backgroundImage = "url('../public/backgrounds/BG-01.png')";
+    modal.style.backgroundSize = "cover";
+    modal.style.backgroundPosition = "center";
     return;
   }
 

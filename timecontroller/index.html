@@ -40,7 +40,7 @@
         <h2 class="text-xl font-bold mb-4 text-green-400">Game Control</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <button onclick="prepare()" class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded font-bold">Prepare (60s)</button>
-          <button onclick="prepare_2()" class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded font-bold">Prepare (10s)</button>
+          <button onclick="prepare_2()" class="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded font-bold">Prepare (3s)</button>
           <button onclick="startGame()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-bold">Run clock</button>
           <button onclick="pauseGame()" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded font-bold">Pause</button>
           <button onclick="resetAll()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-bold">Reset All</button>
@@ -71,6 +71,16 @@
           <div class="bg-gray-700 rounded p-3">Blue Team: <span id="currentBlueTeam" class="font-bold">-</span></div>
         </div>
       </div>
+
+      <div class="bg-gray-800 p-6 rounded-lg mt-6">
+        <h2 class="text-xl font-bold mb-4 text-green-400">Winner Display</h2>
+        <div class="flex items-center gap-4">
+          <label class="font-medium">Winner Message:</label>
+          <input type="text" id="winnerMessage" class="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white" placeholder="Enter winner message">
+          <button onclick="showWinner()" id="showWinnerButton" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-bold">Show Winner</button>
+        </div>
+      </div>
     </div>
+
   </body>
 </html>

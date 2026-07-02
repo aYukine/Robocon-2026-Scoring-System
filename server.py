@@ -5,6 +5,14 @@ import threading
 import socket
 import time
 import os
+import pygame
+
+# Initialize the mixer
+pygame.mixer.init()
+
+# Load the MP3 file
+pygame.mixer.music.load("3-sec-cd.mp3")
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('10.255.255.255', 1))
@@ -29,6 +37,7 @@ data = {
     "game_clock": game_time,
     "overlay_timer": 0,
     "overlay_message": "",
+    "show_winner": False,
     "r1": 0,
     "r2": 0,
     "b1": 0,
@@ -198,11 +207,11 @@ async def handle_controller(websocket):
                 add_log("Preparation phase started (60s)")
 
             elif command == "prepare_2":
-                data["overlay_timer"] = 10
+                data["overlay_timer"] = 3
                 data["overlay_message"] = "Starting"
                 start_time = time.monotonic()
                 timer_running = False
-                add_log("Preparation phase started (10s)")
+                add_log("Preparation phase started (3s)")
             
 
             elif command == "start":
@@ -232,6 +241,14 @@ async def handle_controller(websocket):
                 old_time = data["game_clock"]
                 data["game_clock"] = max(0, data["game_clock"] - sub_time)
                 add_log(f"Time subtracted: -{sub_time}s (Total: {old_time:.0f}s -> {data['game_clock']:.0f}s)")
+
+            elif command == "showWinner":
+                data["overlay_message"] = rev_data["message"]
+                if data["show_winner"] == False:
+                    data["show_winner"] = True
+                else:
+                    data["show_winner"] = False
+                add_log(f"Overlay message set: {rev_data['message']}")
 
             await broadcast_state()
             updateFileJson()
@@ -314,6 +331,7 @@ def reset():
         "game_clock": game_time,
         "overlay_timer": 0,
         "overlay_message": "",
+        "show_winner": False,
         "r1": 0,
         "r2": 0,
         "b1": 0,
@@ -353,6 +371,8 @@ def timer():
             elapsed_time = time.monotonic() - start_time
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
+                if data["overlay_timer"] <= 3 and data["overlay_timer"] + elapsed_time >= 3:
+                    pygame.mixer.music.play()
                 if data["overlay_timer"] <= 0:
                     if data["overlay_message"] == "PREPARATION":
                         timer_running = False
