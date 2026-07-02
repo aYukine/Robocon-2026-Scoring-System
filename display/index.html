@@ -2,142 +2,275 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover"
+    />
     <link rel="icon" type="image/x-icon" href="/public/Favicon/favicon.ico" />
     <title>Display</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-    <body class="h-dvh bg-gradient-to-r from-blue-600 via-blue-600 to-red-600 from-50% to-50% relative overflow-hidden"></body>
-    <div id="displayContent" class="h-full transition-all duration-300">
-      <div class="w-full h-70 grid grid-cols-[1fr_minmax(500px,670px)_1fr] overflow-hidden border-b-4 border-white">
-      
-      <div class="flex items-center justify-end">
-        <div class="grid grid-cols-[200px_320px_140px] items-center gap-6">
-          <div class="w-[200px] h-[200px] flex items-center justify-center">
+
+  <body class="h-dvh w-full overflow-x-hidden">
+    <div id="displayContent" class="h-full w-full flex flex-col">
+      <div
+        class="flex flex-col lg:flex-row items-stretch justify-between gap-5 mb-6 p-6 flex-shrink-0"
+      >
+        <!-- 🔵 BLUE TEAM CARD (name left, logo right - justify-between) -->
+        <div class="team-panel flex-1 flex items-center gap-3">
+          <div class="flex-shrink-0 p-2">
             <img
               id="blueTeamLogo"
-              src="../public/logo/Logo.png"
-              class="w-full h-full object-contain"
+              src="../public/logo/Logo1.png"
+              class="w-[100px] h-[100px] md:w-[240px] md:h-[240px] object-contain drop-shadow-2xl"
+              alt="Blue Logo"
             />
           </div>
-
-          <div class="w-[300px]">
-            <h1
-              class="text-white text-6xl font-bold truncate text-left"
-              id="blueTeamName"
-            >
-              BLUE
-            </h1>
-          </div>
-
-          <div class="flex items-center justify-center flex-col gap-4"></div>
+          <h1
+            id="blueTeamName"
+            class="text-5xl md:text-6xl team-name-xl text-white font-black bg-gradient-to-r from-blue-300 to-blue-500 bg-clip-text text-transparent drop-shadow-md font-montserrat"
+          >
+            BLUE
+          </h1>
         </div>
-      </div>
-
-      <div class="flex items-center justify-center">
-        <div
-          class="relative rounded-3xl bg-[#1A1C1C] outline outline-6 text-[#F0F1F1] shadow-[0_0_25px_rgba(255,255,255,0.15)] transition-all duration-500 h-[200px] w-[420px] flex items-center justify-center"
-        >
-          <div id="gameClockContainer">
+        <!-- ⏱️ CENTER TIMER (responsive and centered) -->
+        <div class="flex items-center justify-center my-2 lg:my-0">
+          <div
+            class="relative rounded-3xl px-6 py-4 md:px-10 md:py-7 min-w-[240px] text-center"
+          >
+            <div id="gameClockContainer">
+              <div
+                class="timer-digits-xl text-white text-5xl md:text-8xl font-montserrat"
+              >
+                <span
+                  class="tracking-wider drop-shadow-[0_0_2px_#FFFFFF]"
+                  id="gameClock"
+                  >180</span
+                >
+                <div
+                  class="font-montserrat text-white text-xl tracking-wider drop-shadow-[0_0_1px_#FFFFFF] uppercase"
+                >
+                  Seconds
+                </div>
+              </div>
+            </div>
             <div
-              class="relative text-[11rem] text-[#F0F1F1] font-digital"
-              id="gameClock"
+              id="overlayTime"
+              class="fixed inset-0 z-50 hidden bg-cover bg-center bg-no-repeat"
+              style="
+                background-image: url(&quot;../public/backgrounds/BG-01.png&quot;);
+              "
+            ></div>
+            <div
+              id="winnerDisplay"
+              class="hidden absolute inset-0 bg-black/60 rounded-3xl flex items-center justify-center"
             >
-              180
+              <div
+                id="winnerText"
+                class="text-4xl font-bold text-green-300 text-center"
+              ></div>
             </div>
           </div>
-          <div id="overlayTimer" class="hidden absolute -bottom-9 text-2xl font-bold text-yellow-300"></div>
-          <div id="winnerDisplay" class="hidden absolute inset-0 bg-black/60 rounded-3xl flex items-center justify-center">
-            <div id="winnerText" class="text-4xl font-bold text-green-300 text-center"></div>
-          </div>
         </div>
-      </div>
 
-      <div class="flex items-center justify-start">
-        <div class="grid grid-cols-[140px_320px_200px] items-center gap-6">
-          <div class="flex items-center justify-center flex-col gap-4"></div>
-
-          <div class="w-[300px]">
-            <h1
-              class="text-white text-6xl font-bold truncate text-right"
-              id="redTeamName"
-            >
-              RED
-            </h1>
-          </div>
-
-          <div class="w-[200px] h-[200px] flex items-center justify-center">
+        <!-- 🔴 RED TEAM CARD -->
+        <div class="team-panel flex-1 flex items-center justify-end gap-3">
+          <h1
+            id="redTeamName"
+            class="text-5xl md:text-6xl text-white font-black bg-gradient-to-r from-red-300 to-red-500 bg-clip-text text-transparent drop-shadow-md text-right font-montserrat"
+          >
+            RED
+          </h1>
+          <div class="flex-shrink-0 p-2">
             <img
               id="redTeamLogo"
-              src="../public/logo/Logo.png"
-              class="w-full h-full object-contain"
+              src="../public/logo/Logo1.png"
+              class="w-[100px] h-[100px] md:w-[240px] md:h-[240px] object-contain drop-shadow-2xl"
+              alt="Red Logo"
             />
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="w-full grid grid-cols-[1fr_670px_1fr] overflow-hidden p-10">
-      
-      <div class="flex flex-col items-center justify-start pt-10 gap-10">
-        <div class="flex flex-col items-center gap-4">
-          <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
-          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="blueTotal">0</div>
+      <!-- Tic-Tac-Toe Grid -->
+      <div class="w-full grid grid-cols-[1fr_670px_1fr] overflow-hidden p-10">
+        <div class="flex flex-col items-center justify-start pt-13 pr-15">
+          <!-- 🔵 BLUE TEAM SCORE -->
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="text-white text-3xl font-bold font-montserrat drop-shadow-md underline-offset-4 underline"
+            >
+              TOTAL SCORE
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-8xl font-bold font-montserrat drop-shadow-[0_0_2px_#FFFFFF]"
+              id="blueTotal"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-14">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              ASSEMBLED WEAPON
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="b1Score"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-18">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              KUNG FU SCROLL
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="b2Score"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-17">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              TIC-TAC-TOE
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="b3Score"
+            >
+              0
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col items-center gap-3">
-          <div class="text-white text-2xl font-bold">WP</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b1Score">0</div>
+        <div class="flex items-center justify-center pt-9">
+          <div
+            class="grid grid-cols-3 gap-10 p-5 tracking-wider drop-shadow-[0_0_2px_#FFFFFF]"
+          >
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+            <div
+              class="ttt-cell w-[190px] h-[190px] bg-gray-300 border-4 border-black"
+            ></div>
+          </div>
         </div>
 
-        <div class="flex flex-col items-center gap-3">
-          <div class="text-white text-2xl font-bold">KFS</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="b2Score">0</div>
+        <!-- 🔴 RED TEAM SCORE -->
+        <div class="flex flex-col items-center justify-start pt-13 pl-26">
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="text-white text-3xl font-bold font-montserrat drop-shadow-md underline-offset-4 underline"
+            >
+              TOTAL SCORE
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-8xl font-bold font-montserrat drop-shadow-[0_0_2px_#FFFFFF]"
+              id="redTotal"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-14">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              ASSEMBLED WEAPON
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="r1Score"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-18">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              KUNG FU SCROLL
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="r2Score"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 pt-17">
+            <div
+              class="text-white text-2xl font-bold font-montserrat drop-shadow-md"
+            >
+              TIC-TAC-TOE
+            </div>
+            <div
+              class="flex items-center justify-center text-white text-6xl font-bold pt-5 drop-shadow-[0_0_2px_#FFFFFF]"
+              id="r3Score"
+            >
+              0
+            </div>
+          </div>
         </div>
       </div>
-
       <div
-        class="flex items-center justify-center bg-[#1A1C1C] border-4 border-white"
+        id="overlayMessage"
+        class="text-center text-2xl text-white font-bold pb-6"
+      ></div>
+    </div>
+
+    <div
+      id="stateModal"
+      class="hidden absolute inset-0 z-50 bg-black/75 backdrop-blur-sm items-center justify-center"
+    >
+      <div
+        class="w-[90vw] max-w-[900px] text-center rounded-3xl border-4 border-white/30 bg-black/65 px-8 py-14 shadow-2xl"
       >
-        <div class="grid grid-cols-3 gap-10 p-10">
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
-          <div class="ttt-cell w-[160px] h-[160px] bg-gray-300"></div>
+        <div
+          id="stateModalTitle"
+          class="text-white text-6xl md:text-8xl font-montserrat"
+        >
+          PREPARATION
         </div>
-      </div>
-
-      <div class="flex flex-col items-center justify-start pt-10 gap-10">
-        <div class="flex flex-col items-center gap-4">
-          <div class="text-white text-3xl font-bold">TOTAL SCORE</div>
-          <div class="w-[200px] h-[120px] bg-[#5B5151] border-4 border-white flex items-center justify-center text-white text-6xl font-bold" id="redTotal">0</div>
-        </div>
-
-        <div class="flex flex-col items-center gap-3">
-          <div class="text-white text-2xl font-bold">WP</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r1Score">0</div>
-        </div>
-
-        <div class="flex flex-col items-center gap-3">
-          <div class="text-white text-2xl font-bold">KFS</div>
-          <div class="w-[140px] h-[60px] bg-[#5B5151] border-2 border-white flex items-center justify-center text-white text-4xl font-bold" id="r2Score">0</div>
-        </div>
-      </div>
-    </div>
-    <div id="overlayMessage" class="text-center text-2xl text-white font-bold pb-6"></div>
-    </div>
-
-    <div id="stateModal" class="hidden absolute inset-0 z-50 bg-black/75 backdrop-blur-sm items-center justify-center">
-      <div class="w-[90vw] max-w-[1400px] text-center rounded-3xl border-4 border-white/30 bg-black/65 px-8 py-14 shadow-2xl">
-        <div id="stateModalTitle" class="text-white text-6xl md:text-8xl font-black tracking-wide">PREPARATION</div>
-        <div id="stateModalSubtitle" class="mt-6 text-yellow-300 text-5xl md:text-7xl font-bold"></div>
+        <div
+          id="stateModalSubtitle"
+          class="mt-6 text-yellow-300 text-5xl md:text-8xl font-bold font-montserrat drop-shadow-[0_0_2px_#FFFFFF]"
+        ></div>
       </div>
     </div>
   </body>

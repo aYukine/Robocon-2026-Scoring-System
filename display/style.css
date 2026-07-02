@@ -1,10 +1,20 @@
-.half-red-half-blue {
-  background: linear-gradient(to right, #e63946 50%, #1d4ed8 50%);
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.font-digital {
-  font-family: "Digital-7";
-  src: url("/fonts/digital-7.ttf") format("truetype");
-  font-weight: normal;
+body {
+  background-image: url("../public/backgrounds/Scoreboad.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  touch-action: manipulation;
+}
+
+.font-montserrat {
+  font-family: "Montserrat";
+  font-weight: 600;
   font-style: normal;
 }
