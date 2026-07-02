@@ -1,4 +1,6 @@
 import asyncio
+import math
+import re
 import websockets
 import json
 import threading
@@ -18,6 +20,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('10.255.255.255', 1))
 IPAddr = s.getsockname()[0]
 s.close()
+
+PORT = 8080
 
 controller_connections: list = []
 display_connected = False
@@ -345,14 +349,29 @@ def reset():
     updateFileJson()
     asyncio.run_coroutine_threadsafe(broadcast_state(), server_loop)
 
+def extractTeamImageName(team_name):
+    # Removes trailing numbers and spaces; leaves standalone names completely alone
+    return re.sub(r'\s+\d+$', '', team_name).strip()
 
 def updateFileJson():
     global data
     file_path = "data/data.json"
+    data_to_save = {
+        "red_team_name": data["red_team_name"],
+        "blue_team_name": data["blue_team_name"],
+        "red_logo_path": f"http://{IPAddr}:{PORT}/public/logo/{extractTeamImageName(data['red_team_name'])}.png",
+        "blue_logo_path": f"http://{IPAddr}:{PORT}/public/logo/{extractTeamImageName(data['blue_team_name'])}.png",
+        "game_clock": math.ceil(data["game_clock"]),
+        "total_red": calculate_totals()[0],
+        "total_blue": calculate_totals()[1],
+        # "overlay_timer": data["overlay_timer"],
+        # "overlay_message": data["overlay_message"],
+        # "show_winner": data["show_winner"],
+    }
     if not os.path.exists(file_path):
         os.makedirs("data")
     with open(file_path, 'w') as f:
-        json.dump(data, f, indent=4)
+        json.dump(data_to_save, f, indent=4)
 
 
 def log_game(log):
