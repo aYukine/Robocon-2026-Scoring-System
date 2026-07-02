@@ -74,9 +74,6 @@ def team_name(team):
 def get_ttt_winner():
     board = data["ttt"]
     win_lines = [
-        [(0, 0), (0, 1), (0, 2)],
-        [(1, 0), (1, 1), (1, 2)],
-        [(2, 0), (2, 1), (2, 2)],
         [(0, 0), (1, 0), (2, 0)],
         [(0, 1), (1, 1), (2, 1)],
         [(0, 2), (1, 2), (2, 2)],
@@ -99,15 +96,21 @@ def get_ttt_winner():
 def evaluate_ttt_winner():
     winner = get_ttt_winner()
     if winner == 1:
-        return f"WINNER: {team_name('red')} (TIC-TAC-TOE)"
+        return f"WINNER: {team_name('red')} KUNGFU MASTER"
     if winner == 2:
-        return f"WINNER: {team_name('blue')} (TIC-TAC-TOE)"
+        return f"WINNER: {team_name('blue')} KUNGFU MASTER"
     return ""
+
+def format_game_clock(seconds):
+    remaining = max(0, int(round(seconds)))
+    minutes = remaining // 60
+    secs = remaining % 60
+    return f"{minutes:02d}:{secs:02d}"
 
 
 def add_log(message):
     global log
-    timestamp = time.strftime("%H:%M:%S", time.localtime())
+    timestamp = format_game_clock(data["game_clock"])
     log += f"[{timestamp}] {message}\n"
     print(f"LOG: {message}")
 
@@ -191,8 +194,16 @@ async def handle_controller(websocket):
                 data["overlay_timer"] = 60
                 data["overlay_message"] = "PREPARATION"
                 start_time = time.monotonic()
-                timer_running = True
+                timer_running = False
                 add_log("Preparation phase started (60s)")
+
+            elif command == "prepare_2":
+                data["overlay_timer"] = 10
+                data["overlay_message"] = "Starting"
+                start_time = time.monotonic()
+                timer_running = False
+                add_log("Preparation phase started (10s)")
+            
 
             elif command == "start":
                 if data["overlay_message"].startswith("WINNER:"):
@@ -343,9 +354,10 @@ def timer():
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
                 if data["overlay_timer"] <= 0:
+                    if data["overlay_message"] == "PREPARATION":
+                        timer_running = False
                     data["overlay_timer"] = 0
                     data["overlay_message"] = ""
-                    timer_running = False
                     add_log("Preparation phase ended")
 
             else:

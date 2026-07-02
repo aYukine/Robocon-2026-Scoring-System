@@ -56,6 +56,10 @@ function prepare() {
     sendCommand('prepare');
 }
 
+function prepare_2() {
+    sendCommand('prepare_2');
+}
+
 function startGame() {
     sendCommand('start');
 }

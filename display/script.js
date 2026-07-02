@@ -15,8 +15,8 @@ function connect() {
 
   ws.onopen = function () {
     console.log("Display connected to server");
-    document.getElementById("connectionStatus").textContent = "Connected";
-    document.getElementById("connectionStatus").className = "text-green-500";
+    // document.getElementById("connectionStatus").textContent = "Connected";
+    // document.getElementById("connectionStatus").className = "text-green-500";
   };
 
   ws.onmessage = function (event) {
@@ -26,9 +26,9 @@ function connect() {
 
   ws.onclose = function () {
     console.log("Display disconnected");
-    document.getElementById("connectionStatus").textContent = "Disconnected";
-    document.getElementById("connectionStatus").className = "text-red-500";
-    setTimeout(connect, 3000);
+    // document.getElementById("connectionStatus").textContent = "Disconnected";
+    // document.getElementById("connectionStatus").className = "text-red-500";
+    setTimeout(connect, 1000);
   };
 
   ws.onerror = function (error) {
@@ -91,10 +91,10 @@ function updateDisplay() {
   document.getElementById("redTotal").textContent = redTotal;
   document.getElementById("blueTotal").textContent = blueTotal;
 
-  const minutes = Math.floor((gameData.game_clock || 0) / 60);
-  const seconds = Math.floor((gameData.game_clock || 0) % 60);
+  // const minutes = Math.floor((gameData.game_clock || 0) / 60);
+  // const seconds = Math.floor((gameData.game_clock || 0) % 60);
   document.getElementById("gameClock").textContent =
-    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    `${Math.ceil(gameData.game_clock)}`
 
   updateModalState();
   updateTTT(ttt);
@@ -124,12 +124,12 @@ function updateModalState() {
   }
 
   if (isWinner) {
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    title.textContent = "WINNER";
-    subtitle.textContent = overlayMessage.replace(/^WINNER:\s*/, "");
-    displayContent.classList.add("blur-sm");
-    document.getElementById("overlayMessage").textContent = "";
+    // modal.classList.remove("hidden");
+    // modal.classList.add("flex");
+    // title.textContent = "WINNER";
+    // subtitle.textContent = overlayMessage.replace(/^WINNER:\s*/, "");
+    // displayContent.classList.add("blur-sm");
+    // document.getElementById("overlayMessage").textContent = "";
     return;
   }
 
