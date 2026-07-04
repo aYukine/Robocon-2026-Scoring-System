@@ -109,9 +109,9 @@ def get_ttt_winner():
 def evaluate_ttt_winner():
     winner = get_ttt_winner()
     if winner == 1:
-        return f"WINNER: {team_name('red')} KUNGFU MASTER"
+        return f"{team_name('red')} KUNGFU MASTER"
     if winner == 2:
-        return f"WINNER: {team_name('blue')} KUNGFU MASTER"
+        return f"{team_name('blue')} KUNGFU MASTER"
     return ""
 
 
@@ -190,6 +190,7 @@ async def handle_controller(websocket):
                 if winner_message:
                     data["overlay_timer"] = 0
                     data["overlay_message"] = winner_message
+                    data["show_winner"] = True
                     timer_running = False
                     add_log(f"TTT WINNER DETECTED: {winner_message}")
                     await broadcast_state()

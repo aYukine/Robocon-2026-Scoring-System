@@ -120,6 +120,7 @@ function updateModalState() {
     modal.style.backgroundImage = "url('../public/backgrounds/BG-01.png')";
     modal.style.backgroundSize = "cover";
     modal.style.backgroundPosition = "center";
+    document.getElementById("modalImageContainer").classList.add("hidden");
     return;
   }
 
@@ -132,6 +133,22 @@ function updateModalState() {
     modal.style.backgroundImage = "url('../public/backgrounds/BG-01.png')";
     modal.style.backgroundSize = "cover";
     modal.style.backgroundPosition = "center";
+
+    const teamName = gameData.overlay_message.split(" ")[0];
+
+    const imageContainer = document.getElementById("modalImageContainer");
+    if (teamName) {
+      imageContainer.innerHTML = `
+        <img 
+          src="../public/logo/${teamName}.png" 
+          class="h-32 w-auto object-contain mb-4" 
+          alt="${teamName} Logo"
+          onerror="this.style.display='none';" 
+        />`;
+      imageContainer.classList.remove("hidden");
+      imageContainer.classList.add("flex");
+    }
+
     return;
   }
 
