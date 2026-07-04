@@ -48,7 +48,7 @@ data = {
     "b2": 0,
     "ttt": [[0, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]] 
+            [0, 0, 0]]
 }
 
 ROW_POINTS = [80, 40, 30]
@@ -114,6 +114,7 @@ def evaluate_ttt_winner():
         return f"WINNER: {team_name('blue')} KUNGFU MASTER"
     return ""
 
+
 def format_game_clock(seconds):
     remaining = max(0, int(round(seconds)))
     minutes = remaining // 60
@@ -151,11 +152,12 @@ async def handle_controller(websocket):
             rev_data = json.loads(message)
             print(f"Controller received: {message}")
             command = rev_data["command"]
-            
+
             if command == "setTeams":
                 data['red_team_name'] = rev_data["redTeamName"]
                 data['blue_team_name'] = rev_data["blueTeamName"]
-                add_log(f"Teams set: RED={data['red_team_name']}, BLUE={data['blue_team_name']}")
+                add_log(
+                    f"Teams set: RED={data['red_team_name']}, BLUE={data['blue_team_name']}")
 
             elif command == "score":
                 side = rev_data['side']
@@ -176,7 +178,7 @@ async def handle_controller(websocket):
                 if current != 0:
                     data["ttt"][row][column] = 0
                     add_log(f"{team} cleared TTT cell ({row}, {column})")
-                
+
                 else:
                     if side[0] == "r":
                         data["ttt"][row][column] = 1
@@ -216,7 +218,13 @@ async def handle_controller(websocket):
                 start_time = time.monotonic()
                 timer_running = False
                 add_log("Preparation phase started (3s)")
-            
+
+            elif command == "test_play":
+                data["overlay_timer"] = 900
+                data["overlay_message"] = "Testing"
+                start_time = time.monotonic()
+                timer_running = False
+                add_log("Test Play")
 
             elif command == "start":
                 if data["overlay_message"].startswith("WINNER:"):
@@ -225,7 +233,8 @@ async def handle_controller(websocket):
                 timer_running = True
                 if not game_started:
                     game_started = True
-                    add_log(f"Game started: {data['red_team_name']} vs {data['blue_team_name']} (180s)")
+                    add_log(
+                        f"Game started: {data['red_team_name']} vs {data['blue_team_name']} (180s)")
                 else:
                     add_log("Game resumed")
 
@@ -238,13 +247,15 @@ async def handle_controller(websocket):
                 add_time = rev_data['time']
                 old_time = data["game_clock"]
                 data["game_clock"] += add_time
-                add_log(f"Time added: +{add_time}s (Total: {old_time:.0f}s -> {data['game_clock']:.0f}s)")
-            
+                add_log(
+                    f"Time added: +{add_time}s (Total: {old_time:.0f}s -> {data['game_clock']:.0f}s)")
+
             elif command == "subTime":
                 sub_time = rev_data["time"]
                 old_time = data["game_clock"]
                 data["game_clock"] = max(0, data["game_clock"] - sub_time)
-                add_log(f"Time subtracted: -{sub_time}s (Total: {old_time:.0f}s -> {data['game_clock']:.0f}s)")
+                add_log(
+                    f"Time subtracted: -{sub_time}s (Total: {old_time:.0f}s -> {data['game_clock']:.0f}s)")
 
             elif command == "showWinner":
                 data["overlay_message"] = rev_data["message"]
@@ -342,16 +353,18 @@ def reset():
         "b2": 0,
         "ttt": [[0, 0, 0],
                 [0, 0, 0],
-                [0, 0, 0]] 
+                [0, 0, 0]]
     }
     log = ""
     add_log("==== NEW GAME SESSION ====\n")
     updateFileJson()
     asyncio.run_coroutine_threadsafe(broadcast_state(), server_loop)
 
+
 def extractTeamImageName(team_name):
     # Removes trailing numbers and spaces; leaves standalone names completely alone
     return re.sub(r'\s+\d+$', '', team_name).strip()
+
 
 def updateFileJson():
     global data
@@ -426,6 +439,7 @@ def timer():
             asyncio.run_coroutine_threadsafe(
                 broadcast_state(), server_loop)
             time.sleep(0.05)
+
 
 def run_servers():
     global server_loop
