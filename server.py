@@ -13,7 +13,8 @@ import pygame
 pygame.mixer.init()
 
 # Load the MP3 file
-pygame.mixer.music.load("3-sec-cd.mp3")
+s_3 = pygame.mixer.Sound("3-sec-cd.mp3")
+s_10 = pygame.mixer.Sound("10-sec-cd.mp3")
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -404,8 +405,10 @@ def timer():
             elapsed_time = time.monotonic() - start_time
             if data["overlay_timer"] > 0:
                 data["overlay_timer"] -= elapsed_time
-                if data["overlay_timer"] <= 3 and data["overlay_timer"] + elapsed_time >= 3:
-                    pygame.mixer.music.play()
+                if data["overlay_timer"] <= 3 and data["overlay_timer"] + elapsed_time >= 3 and data["overlay_message"] == "STARTING IN":
+                    s_3.play()
+                if data["overlay_timer"] <= 10 and data["overlay_timer"] + elapsed_time >= 10 and data["overlay_message"] == "PREPARATION":
+                    s_10.play()
                 if data["overlay_timer"] <= 0:
                     if data["overlay_message"] == "PREPARATION":
                         timer_running = False
