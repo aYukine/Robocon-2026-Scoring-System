@@ -215,7 +215,7 @@ async def handle_controller(websocket):
 
             elif command == "prepare_2":
                 data["overlay_timer"] = 3
-                data["overlay_message"] = "Starting"
+                data["overlay_message"] = "STARTING IN"
                 start_time = time.monotonic()
                 timer_running = False
                 add_log("Preparation phase started (3s)")
@@ -370,12 +370,16 @@ def extractTeamImageName(team_name):
 def updateFileJson():
     global data
     file_path = "data/data.json"
+    if data["overlay_timer"] > 0:
+        clock = math.ceil(data["overlay_timer"])
+    else:
+        clock = math.ceil(data["game_clock"])
     data_to_save = {
         "red_team_name": data["red_team_name"],
         "blue_team_name": data["blue_team_name"],
         "red_logo_path": f"http://{IPAddr}:{PORT}/public/logo/{extractTeamImageName(data['red_team_name'])}.png",
         "blue_logo_path": f"http://{IPAddr}:{PORT}/public/logo/{extractTeamImageName(data['blue_team_name'])}.png",
-        "game_clock": math.ceil(data["game_clock"]),
+        "game_clock": clock,
         "total_red": calculate_totals()[0],
         "total_blue": calculate_totals()[1],
         # "overlay_timer": data["overlay_timer"],
