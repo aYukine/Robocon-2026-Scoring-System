@@ -94,7 +94,7 @@ function updateDisplay() {
   // const minutes = Math.floor((gameData.game_clock || 0) / 60);
   // const seconds = Math.floor((gameData.game_clock || 0) % 60);
   document.getElementById("gameClock").textContent =
-    `${Math.ceil(gameData.game_clock)}`
+    `${Math.ceil(gameData.game_clock)}`;
 
   updateModalState();
   updateTTT(ttt);
@@ -127,7 +127,7 @@ function updateModalState() {
   if (showWinner) {
     modal.classList.remove("hidden");
     modal.classList.add("flex");
-    title.textContent = gameData.overlay_message;
+    let message = (title.textContent = gameData.overlay_message);
     displayContent.classList.add("blur-sm");
     document.getElementById("overlayMessage").textContent = "";
     modal.style.backgroundImage = "url('../public/backgrounds/BG-01.png')";
@@ -141,7 +141,7 @@ function updateModalState() {
       imageContainer.innerHTML = `
         <img 
           src="../public/logo/${teamName}.png" 
-          class="h-32 w-auto object-contain mb-4" 
+          class="h-64 w-auto object-contain mb-4" 
           alt="${teamName} Logo"
           onerror="this.style.display='none';" 
         />`;
