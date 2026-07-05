@@ -35,7 +35,6 @@ function connect() {
     console.error("WebSocket error:", error);
   };
 }
-
 function calculateTTTPoints(
   ttt = [
     [0, 0, 0],
@@ -45,18 +44,26 @@ function calculateTTTPoints(
 ) {
   let redPoints = 0;
   let bluePoints = 0;
+  let r = 0;
+  let b = 0;
 
   ttt.forEach((row, rowIndex) => {
     const rowValue = ROW_POINTS[rowIndex] || 0;
     row.forEach((cell) => {
-      if (cell === 1) redPoints += rowValue;
-      if (cell === 2) bluePoints += rowValue;
+      if (cell === 1) {
+        redPoints += rowValue;
+        r += 1;
+      } else if (cell === 2) {
+        bluePoints += rowValue;
+        b += 1;
+      }
     });
   });
+  document.getElementById("r3Score").textContent = r;
+  document.getElementById("b3Score").textContent = b;
 
   return { redPoints, bluePoints };
 }
-
 function updateDisplay() {
   document.getElementById("redTeamName").textContent =
     gameData.red_team_name || "RED";
